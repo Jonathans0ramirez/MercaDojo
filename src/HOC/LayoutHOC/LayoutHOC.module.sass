@@ -1,0 +1,22 @@
+@mixin not-last-child($selector)
+    & #{$selector}:not(:last-child)
+        @content
+
+.headerBox
+    box-shadow: 0 2px 8px #f0f1f2
+
+.layoutMenu
+    border: none !important
+    float: right
+    padding-right: 20px
+
+.box
+    display: flex
+    flex-flow: column
+    height: 100%
+    & .row
+        border: 1px dotted grey
+    & .headerBox
+        flex: 0 1 auto
+    & .contentBox
+        flex: 1 1 auto
