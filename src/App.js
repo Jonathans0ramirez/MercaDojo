@@ -11,7 +11,7 @@ const App = () => {
       <Switch>
         <Redirect exact from='/' to='/home' />
         <Route path="/home" exact component={Home} />
-        <Route path="/list" component={List} />
+        <Route path="/list/:searchQuery" component={List} />
         <Route path="*" render={() => <p>NO TENGO NADA</p>} />
       </Switch>
     </LayoutHOC>

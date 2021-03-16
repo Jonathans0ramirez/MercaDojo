@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory, useLocation } from "react-router-dom";
 import {
     Row,
     Col,
@@ -8,7 +9,6 @@ import {
 import {
     ShopTwoTone
 } from '@ant-design/icons';
-import { useHistory, useLocation } from "react-router-dom";
 import LayStyles from './LayoutHOC.module.sass';
 
 const {
@@ -18,8 +18,6 @@ const {
     Search
 } = Input;
 
-const onSearch = value => console.log(value);
-
 const LayoutHOC = ({ children }) => {
     const history = useHistory();
     const location = useLocation();
@@ -28,12 +26,18 @@ const LayoutHOC = ({ children }) => {
         console.log(history)
         history.replace(e.key)
     }
+
+    const onSearch = (value) => {
+        const valueFrm = value.replace(/\s+/g, '-').replace(/(-)+/g, '-');
+        history.push(`/list/${valueFrm}`)
+    };
+
     return (
         <div className={LayStyles.box}>
             <div className={LayStyles.headerBox}>
                 <Row align="middle">
                     <Col span={8}>
-                        <ShopTwoTone twoToneColor="#1DA57A" style={{ fontSize: "30px", marginLeft:"5px" }} />
+                        <ShopTwoTone twoToneColor="#1DA57A" style={{ fontSize: "30px", marginLeft: "5px" }} />
                     </Col>
                     <Col span={4}>
                         <Search placeholder="Articulo" onSearch={onSearch} loading={true} />
