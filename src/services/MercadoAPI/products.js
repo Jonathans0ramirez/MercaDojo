@@ -2,10 +2,11 @@ const { getItemById, getDescription } = require('./items')
 const { searchProducts } = require('./search')
 const { getUserById } = require('./users')
 
-const getAllProductsFormatted = (querySeacrh) => {
-    return searchProducts(querySeacrh).then(data => data)
+const getAllProductsFormatted = (querySeacrh, offset = 0) => {
+    return searchProducts(querySeacrh, offset).then(data => data)
         .then(response => {
-            return Promise.all(response.map(res => {
+            const results = response.results;
+            return Promise.all(results.map(res => {
                 const itemId = res.id;
                 return getItemById(itemId).then(response => {
                     return getDescription(response.id).then(data => {
@@ -24,7 +25,14 @@ const getAllProductsFormatted = (querySeacrh) => {
                         })
                     });
                 });
-            })).then(res => res)
+            })).then(res => {
+                const generalValues = {
+                    total: response.paging.total > 1000 ? 1000 : response.paging.total,
+                    offset: response.paging.offset
+                }
+                const newRES = { items: res, ...generalValues };
+                return newRES;
+            })
         })
 }
 

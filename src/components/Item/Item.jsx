@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import {
     Col,
     Card,
-    Avatar,
+    Image,
     Skeleton
 } from 'antd';
 import './Item.sass'
 import ItemDrawer from './ItemDrawer/ItemDrawer';
 
 const { Meta } = Card;
-const { Image } = Skeleton;
+const { Image: SkeImage } = Skeleton;
 
 const calcOffVal = (price, originalPrice) => {
     return 100 - ((price * 100) / originalPrice);
@@ -41,14 +41,16 @@ const Item = ({ item, isLoading }) => {
                     hoverable
                     style={{ width: "90vw", marginTop: "15px" }}
                 >
-                    {isLoading && <Image style={{ width: "160px", height: "160px" }} />}
+                    {isLoading && <SkeImage style={{ width: "160px", height: "160px" }} />}
                     <Skeleton loading={isLoading} active>
                         <Meta
                             className="MetaStyles"
                             avatar={
-                                <Avatar
-                                    size="large"
+                                <Image
+                                    width={90}
+                                    height={90}
                                     src={thumb}
+                                    preview={false}
                                 />
                             }
                             title={title}
@@ -60,7 +62,7 @@ const Item = ({ item, isLoading }) => {
                                         </div>
                                         <div className="price">
                                             <span className="priceSpan">{price.toLocaleString('es')}</span>
-                                            <span className="discountSpan">{`${calcOffVal(price, original_price).toFixed()}% OFF`}</span>
+                                            <span className="discountSpan">{`${calcOffVal(price, original_price).toFixed()}% de Descuento`}</span>
                                         </div>
                                     </>
                                 )
