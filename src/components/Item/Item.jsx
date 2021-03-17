@@ -11,7 +11,13 @@ import ItemDrawer from './ItemDrawer/ItemDrawer';
 const { Meta } = Card;
 const { Image } = Skeleton;
 
-const Item = ({ thumb, title, isLoading }) => {
+const calcOffVal = (price, originalPrice) => {
+    return 100 - ((price * 100) / originalPrice);
+}
+
+const Item = ({ item, isLoading }) => {
+
+    const { thumbnail: thumb, title, price, original_price } = item;
 
     const [visible, setVisible] = useState(false)
 
@@ -38,6 +44,7 @@ const Item = ({ thumb, title, isLoading }) => {
                     {isLoading && <Image style={{ width: "160px", height: "160px" }} />}
                     <Skeleton loading={isLoading} active>
                         <Meta
+                            className="MetaStyles"
                             avatar={
                                 <Avatar
                                     size="large"
@@ -45,12 +52,25 @@ const Item = ({ thumb, title, isLoading }) => {
                                 />
                             }
                             title={title}
-                            description="www.instagram.com"
+                            description={
+                                original_price ? (
+                                    <>
+                                        <div className="originalPrice">
+                                            {original_price.toLocaleString('es')}
+                                        </div>
+                                        <div className="price">
+                                            <span className="priceSpan">{price.toLocaleString('es')}</span>
+                                            <span className="discountSpan">{`${calcOffVal(price, original_price).toFixed()}% OFF`}</span>
+                                        </div>
+                                    </>
+                                )
+                                    : <div className="price">{price.toLocaleString('es')}</div>
+                            }
                         />
                     </Skeleton>
                 </Card>
             </Col>
-            <ItemDrawer visible={visible} onClose={onClose} />
+            {item && <ItemDrawer itemRes={item} visible={visible} onClose={onClose} />}
         </>
     )
 }

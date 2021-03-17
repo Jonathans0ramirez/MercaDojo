@@ -4,7 +4,7 @@ import {
     Row
 } from 'antd';
 import Item from '../../components/Item/Item';
-import { searchItems } from '../../services/MercadoAPI/search';
+import { getAllProductsFormatted } from '../../services/MercadoAPI/products';
 
 const List = () => {
     const [items, setItems] = useState([]);
@@ -14,8 +14,8 @@ const List = () => {
     useEffect(() => {
         setIsLoading(true);
         const toSend = searchQuery.replace(/(-)+/g, ' ').toLowerCase();
-        searchItems(toSend).then(s => {
-            setItems(s)
+        getAllProductsFormatted(toSend).then(items => {
+            setItems(items)
             setIsLoading(false);
         });
     }, [searchQuery])
@@ -24,7 +24,7 @@ const List = () => {
         <Row justify="center">
             {
                 items.map((item, key) => (
-                    <Item key={key} title={item.title} thumb={item.thumbnail} isLoading={isLoading}></Item>
+                    <Item key={key} item={item} isLoading={isLoading}></Item>
                 ))
             }
         </Row>

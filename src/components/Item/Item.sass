@@ -8,3 +8,21 @@
 //         background-position: 100% 50% !important
 //     to
 //         background-position: 0% 50% !important
+.MetaStyles
+    white-space: break-spaces
+
+.originalPrice
+    font-size: smaller
+    text-decoration: line-through
+    &::before
+        content: "$ "
+
+.price
+    font-size: medium
+    >.priceSpan
+        margin-right: 5px
+    >.discountSpan
+        font-size: smaller
+        color: #02d383
+    &::before
+        content: "$ "
