@@ -52,16 +52,22 @@ const List = () => {
     }
 
     return (
-        <Row justify="center">
-            {
-                items.map((item, key) => (
-                    <Item key={key} item={item} isLoading={isLoading}></Item>
-                ))
-            }
-            <Col style={{ margin: "10px" }}>
-                {!isLoading && <Pagination showSizeChanger={false} current={pagination.offset} total={pagination.total} onChange={onPagingChange} defaultPageSize={10} />}
-            </Col>
-        </Row>
+        <>
+            <Row justify="center" gutter={[{ xs: 0, sm: 0, md: 20, lg: 16 }, 16]}>
+                {
+                    items.map((item, key) => (
+                        <Item key={key} item={item} isLoading={isLoading}></Item>
+                    ))
+                }
+            </Row>
+            <Row justify="center">
+                <Col
+                    style={{ margin: "10px" }}
+                >
+                    {!isLoading && <Pagination showSizeChanger={false} current={pagination.offset} total={pagination.total} onChange={onPagingChange} defaultPageSize={10} />}
+                </Col>
+            </Row>
+        </>
     )
 }
 
