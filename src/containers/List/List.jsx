@@ -3,15 +3,20 @@ import { useParams } from "react-router-dom";
 import {
     Row,
     Col,
-    Typography,
+    Carousel,
     Pagination
 } from 'antd';
 import Item from '../../components/Item/Item';
 import { getAllProductsFormatted } from '../../services/MercadoAPI/products';
 
-const { Title } = Typography;
-
 const List = () => {
+    const contentStyle = {
+        height: '160px',
+        color: '#fff',
+        lineHeight: '160px',
+        textAlign: 'center',
+        background: '#1DA57A'
+    };
     const [items, setItems] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}]);
     const [pagination, setPagination] = useState({
         total: '',
@@ -54,7 +59,20 @@ const List = () => {
 
     return (
         <>
-            <Row justify="center"><Title>RESULTADOS: </Title></Row>
+            <Carousel autoplay dotPosition="right" effect="fade">
+                <div>
+                    <h3 style={contentStyle}>Ofertas</h3>
+                </div>
+                <div>
+                    <h3 style={contentStyle}>Increíbles</h3>
+                </div>
+                <div>
+                    <h3 style={contentStyle}>Cada</h3>
+                </div>
+                <div>
+                    <h3 style={contentStyle}>Día</h3>
+                </div>
+            </Carousel>
             <Row justify="center" gutter={[{ xs: 0, sm: 0, md: 20, lg: 20, xl: 30, xxl: 30 }, 16]}>
                 {
                     items.map((item, key) => (

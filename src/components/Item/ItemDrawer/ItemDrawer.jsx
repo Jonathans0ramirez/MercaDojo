@@ -40,7 +40,7 @@ const ItemDrawer = ({ itemRes, visible, onClose }) => {
                 layout="vertical"
                 bordered
             >
-                <Item className="contentItemDrawer" label={<Paragraph className="paragraphItemDrawer" strong>Titulo</Paragraph>} span={1}>
+                <Item className="contentItemDrawer" label={<Paragraph className="paragraphItemDrawer" strong>Título</Paragraph>} span={1}>
                     {title}
                 </Item>
                 <Item className="contentItemDrawer" label={<Paragraph className="paragraphItemDrawer" strong>Vendedor</Paragraph>} span={2}>
@@ -48,7 +48,7 @@ const ItemDrawer = ({ itemRes, visible, onClose }) => {
                 </Item>
                 {
                     pictures && pictures.length > 0 &&
-                    <Item className="contentItemDrawer" label={<Paragraph className="paragraphItemDrawer" strong>Imagenes</Paragraph>} span={3}>
+                    <Item className="contentItemDrawer" label={<Paragraph className="paragraphItemDrawer" strong>Imágenes</Paragraph>} span={3}>
                         <div className="ImgGroupContainer">
                             <PreviewGroup>
                                 {
