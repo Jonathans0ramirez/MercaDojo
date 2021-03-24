@@ -10,7 +10,6 @@ import ItemDrawer from './ItemDrawer/ItemDrawer';
 import BadgeOffHOC from '../../HOC/BadgeOffHOC/BadgeOffHOC';
 
 const { Meta } = Card;
-const { Image: SkeImage } = Skeleton;
 
 const calcOffVal = (price, originalPrice) => {
     if (!originalPrice) {
@@ -56,8 +55,12 @@ const Item = ({ item, isLoading }) => {
                         onClick={(event) => onClick(event)}
                         hoverable
                     >
-                        {isLoading && <SkeImage style={{ width: "160px", height: "160px" }} />}
-                        <Skeleton loading={isLoading} active>
+                        <Skeleton
+                            avatar={{ active: true, shape: "circle", size: 90 }}
+                            paragraph={{ rows: 1 }}
+                            loading={isLoading}
+                            active
+                        >
                             <Meta
                                 className="MetaStyles"
                                 avatar={

@@ -1,9 +1,8 @@
 import React from 'react'
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
     Row,
     Col,
-    Menu,
     Input,
     Typography
 } from 'antd';
@@ -13,18 +12,10 @@ import {
 } from '@ant-design/icons';
 import LayStyles from './LayoutHOC.module.sass';
 
-const {
-    Item
-} = Menu;
 const { Title } = Typography;
 
 const LayoutHOC = ({ children }) => {
     const history = useHistory();
-    const location = useLocation();
-
-    const handleClick = (e) => {
-        history.replace(e.key)
-    }
 
     const onSearch = (e) => {
         const value = e.target.value;
@@ -45,25 +36,14 @@ const LayoutHOC = ({ children }) => {
                             <ShopTwoTone twoToneColor="#1DA57A" /> MercaDojo by JR
                         </Title>
                     </Col>
-                    <Col span={4}>
+                    <Col span={8} offset={7}>
                         <Input
                             className={LayStyles.inputBox}
                             placeholder="Articulo"
                             onPressEnter={onSearch}
-                            bordered={false}
+                            bordered={true}
                             prefix={<SearchOutlined />}
                         />
-                    </Col>
-                    <Col span={11}>
-                        <Menu
-                            mode='horizontal'
-                            onClick={handleClick}
-                            className={LayStyles.layoutMenu}
-                            selectedKeys={[location.pathname]}
-                        >
-                            <Item key="/home">Home- Temporal</Item>
-                            <Item key="/list">Lista - Temporal</Item>
-                        </Menu>
                     </Col>
                     <Col span={1}></Col>
                 </Row>

@@ -3,10 +3,13 @@ import { useParams } from "react-router-dom";
 import {
     Row,
     Col,
+    Typography,
     Pagination
 } from 'antd';
 import Item from '../../components/Item/Item';
 import { getAllProductsFormatted } from '../../services/MercadoAPI/products';
+
+const { Title } = Typography;
 
 const List = () => {
     const [items, setItems] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}]);
@@ -51,6 +54,7 @@ const List = () => {
 
     return (
         <>
+            <Row justify="center"><Title>RESULTADOS: </Title></Row>
             <Row justify="center" gutter={[{ xs: 0, sm: 0, md: 20, lg: 20, xl: 30, xxl: 30 }, 16]}>
                 {
                     items.map((item, key) => (
