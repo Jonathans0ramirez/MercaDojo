@@ -3,9 +3,9 @@ import {
     Badge
 } from 'antd';
 
-const BadgeOffHOC = ({ discountOff, children }) => {
+const BadgeOffHOC = ({ discountOff, isLoading, children }) => {
 
-    if (discountOff === 0) return (children);
+    if (isLoading || discountOff === 0) return (children);
 
     return (
         <Badge.Ribbon text={`${discountOff.toFixed()}% OFF`} placement="start">

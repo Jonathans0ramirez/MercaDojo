@@ -4,30 +4,30 @@ import {
     Row,
     Col,
     Menu,
-    Input
+    Input,
+    Typography
 } from 'antd';
 import {
-    ShopTwoTone
+    ShopTwoTone,
+    SearchOutlined
 } from '@ant-design/icons';
 import LayStyles from './LayoutHOC.module.sass';
 
 const {
     Item
 } = Menu;
-const {
-    Search
-} = Input;
+const { Title } = Typography;
 
 const LayoutHOC = ({ children }) => {
     const history = useHistory();
     const location = useLocation();
 
     const handleClick = (e) => {
-        console.log(history)
         history.replace(e.key)
     }
 
-    const onSearch = (value) => {
+    const onSearch = (e) => {
+        const value = e.target.value;
         const valueFrm = value.replace(/\s+/g, '-').replace(/(-)+/g, '-');
         history.push(`/list/${valueFrm}`)
     };
@@ -37,13 +37,30 @@ const LayoutHOC = ({ children }) => {
             <div className={LayStyles.headerBox}>
                 <Row align="middle">
                     <Col span={8}>
-                        <ShopTwoTone twoToneColor="#1DA57A" style={{ fontSize: "30px", marginLeft: "5px" }} />
+                        <Title
+                            className={LayStyles.titleBox}
+                            level={3}
+                            code={true}
+                        >
+                            <ShopTwoTone twoToneColor="#1DA57A" /> MercaDojo by JR
+                        </Title>
                     </Col>
                     <Col span={4}>
-                        <Search placeholder="Articulo" onSearch={onSearch} loading={true} />
+                        <Input
+                            className={LayStyles.inputBox}
+                            placeholder="Articulo"
+                            onPressEnter={onSearch}
+                            bordered={false}
+                            prefix={<SearchOutlined />}
+                        />
                     </Col>
                     <Col span={11}>
-                        <Menu className={LayStyles.layoutMenu} mode='horizontal' onClick={handleClick} selectedKeys={[location.pathname]}>
+                        <Menu
+                            mode='horizontal'
+                            onClick={handleClick}
+                            className={LayStyles.layoutMenu}
+                            selectedKeys={[location.pathname]}
+                        >
                             <Item key="/home">Home- Temporal</Item>
                             <Item key="/list">Lista - Temporal</Item>
                         </Menu>

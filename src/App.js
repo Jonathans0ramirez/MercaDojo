@@ -11,6 +11,7 @@ const App = () => {
       <Switch>
         <Redirect exact from='/' to='/home' />
         <Route path="/home" exact component={Home} />
+        <Redirect exact from='/list' to='/list/ofertas' />
         <Route path="/list/:searchQuery" component={List} />
         <Route path="*" render={() => <p>NO TENGO NADA</p>} />
       </Switch>

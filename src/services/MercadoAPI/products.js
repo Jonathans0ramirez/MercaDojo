@@ -19,7 +19,8 @@ const getAllProductsFormatted = (querySeacrh, offset = 0) => {
                                 thumbnail: response.thumbnail,
                                 pictures: response.pictures,
                                 price: response.price,
-                                original_price: response.original_price
+                                original_price: response.original_price,
+                                attributes: response.attributes
                             }
                             return resJSON;
                         })

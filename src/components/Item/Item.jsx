@@ -38,9 +38,6 @@ const Item = ({ item, isLoading }) => {
     }
 
     const discountOff = calcOffVal(price, original_price);
-
-    console.log(discountOff)
-
     return (
         <>
             <Col
@@ -53,6 +50,7 @@ const Item = ({ item, isLoading }) => {
             >
                 <BadgeOffHOC
                     discountOff={discountOff}
+                    isLoading={isLoading}
                 >
                     <Card
                         onClick={(event) => onClick(event)}
@@ -79,11 +77,10 @@ const Item = ({ item, isLoading }) => {
                                             </div>
                                             <div className="price">
                                                 <span className="priceSpan">{price.toLocaleString('es')}</span>
-                                                {/* <span className="discountSpan">{`${discountOff.toFixed()}% OFF`}</span> */}
                                             </div>
                                         </>
                                     )
-                                        : <div className="price">{price.toLocaleString('es')}</div>
+                                        : price ? <div className="price">{price.toLocaleString('es')}</div> : null
                                 }
                             />
                         </Skeleton>

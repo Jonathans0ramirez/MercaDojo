@@ -4,6 +4,7 @@
 
 .headerBox
     box-shadow: 0 2px 8px #f0f1f2
+    background-color: #fff235
 
 .layoutMenu
     border: none !important
@@ -20,3 +21,16 @@
         flex: 0 1 auto
     & .contentBox
         flex: 1 1 auto
+
+.titleBox
+    margin-bottom: 0 !important
+
+.inputBox
+    &::after
+        content: "" !important
+        width: 85% !important
+        height: 1px
+        background: #999
+        position: absolute
+        bottom: -1px
+        left: 25px

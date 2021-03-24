@@ -1,5 +1,7 @@
 import React from 'react'
 import {
+    Descriptions,
+    Typography,
     Drawer,
     Space,
     Image
@@ -7,13 +9,8 @@ import {
 import './ItemDrawer.sass'
 
 const { PreviewGroup } = Image;
-
-// const DescriptionItem = ({ title, content }) => (
-//     <div className="site-description-item-profile-wrapper">
-//         <p className="site-description-item-profile-p-label">{title}:</p>
-//         {content}
-//     </div>
-// );
+const { Item } = Descriptions;
+const { Paragraph } = Typography;
 
 const ItemDrawer = ({ itemRes, visible, onClose }) => {
     if (itemRes === undefined) {
@@ -22,10 +19,11 @@ const ItemDrawer = ({ itemRes, visible, onClose }) => {
 
     const {
         title,
-        description,
+        price,
         seller,
         pictures,
-        price,
+        attributes,
+        description,
         original_price
     } = itemRes;
 
@@ -37,27 +35,67 @@ const ItemDrawer = ({ itemRes, visible, onClose }) => {
             onClose={onClose}
             visible={visible}
         >
-            {pictures && pictures.length > 0 &&
-                <div className="ImgGroupContainer">
-                    <PreviewGroup>
-                        {
-                            pictures.map((pic, index) => (
-                                <Space className="drawerImgGroup" key={index}>
-                                    <Image
-                                        width={100}
-                                        src={pic.url}
-                                    />
-                                </Space>
-                            ))
-                        }
-                    </PreviewGroup>
-                </div>
-            }
-            <p>{title}</p>
-            <p>{description}</p>
-            <p>{seller}</p>
-            <p>{price}</p>
-            <p>{original_price}</p>
+            <Descriptions
+                title="Información General"
+                layout="vertical"
+                bordered
+            >
+                <Item className="contentItemDrawer" label={<Paragraph className="paragraphItemDrawer" strong>Titulo</Paragraph>} span={1}>
+                    {title}
+                </Item>
+                <Item className="contentItemDrawer" label={<Paragraph className="paragraphItemDrawer" strong>Vendedor</Paragraph>} span={2}>
+                    {seller}
+                </Item>
+                {
+                    pictures && pictures.length > 0 &&
+                    <Item className="contentItemDrawer" label={<Paragraph className="paragraphItemDrawer" strong>Imagenes</Paragraph>} span={3}>
+                        <div className="ImgGroupContainer">
+                            <PreviewGroup>
+                                {
+                                    pictures.slice(0, 5).map((pic, index) => (
+                                        <Space className="drawerImgGroup" key={index}>
+                                            <Image
+                                                width={90}
+                                                src={pic.url}
+                                            />
+                                        </Space>
+                                    ))
+                                }
+                            </PreviewGroup>
+                        </div>
+                    </Item>
+                }
+                <Item className="contentItemDrawer" label={<Paragraph className="paragraphItemDrawer" strong>Descripción</Paragraph>} span={3}>
+                    {description}
+                </Item>
+                <Item className="contentItemDrawer" label={<Paragraph className="paragraphItemDrawer" strong>Precio</Paragraph>}>
+                    {original_price ? (
+                        <>
+                            <div className="originalPrice originalPriceDrawer">
+                                {original_price.toLocaleString('es')}
+                            </div>
+                            <div className="price priceDrawer">
+                                <span className="priceSpan">{price.toLocaleString('es')}</span>
+                            </div>
+                        </>
+                    )
+                        : price ? <div className="price priceDrawer">{price.toLocaleString('es')}</div> : null
+                    }
+                </Item>
+            </Descriptions>
+            <Descriptions
+                title="Atributos"
+                layout="vertical"
+                bordered
+            >
+                {
+                    attributes && attributes.map((att, index) => (
+                        att.value_name && <Item key={index} className="contentItemDrawer" label={<Paragraph className="paragraphItemDrawer" strong>{att.name}</Paragraph>}>
+                            {att.value_name}
+                        </Item>
+                    ))
+                }
+            </Descriptions>
         </Drawer>
     )
 }

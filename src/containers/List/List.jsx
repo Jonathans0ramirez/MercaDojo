@@ -9,7 +9,7 @@ import Item from '../../components/Item/Item';
 import { getAllProductsFormatted } from '../../services/MercadoAPI/products';
 
 const List = () => {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}]);
     const [pagination, setPagination] = useState({
         total: '',
         offset: 0
@@ -21,7 +21,6 @@ const List = () => {
         setIsLoading(true);
         const toSend = searchQuery.replace(/(-)+/g, ' ').toLowerCase();
         makeAPICall(toSend).then(items => {
-            console.log(items)
             setItems(items.items);
             setPagination({
                 total: items.total,
@@ -39,7 +38,6 @@ const List = () => {
     const onPagingChange = (page) => {
         setIsLoading(true);
         const offset = page - 1;
-        console.log(offset)
         const toSend = searchQuery.replace(/(-)+/g, ' ').toLowerCase();
         makeAPICall(toSend, offset * 10).then(items => {
             setItems(items.items);
@@ -53,7 +51,7 @@ const List = () => {
 
     return (
         <>
-            <Row justify="center" gutter={[{ xs: 0, sm: 0, md: 20, lg: 16 }, 16]}>
+            <Row justify="center" gutter={[{ xs: 0, sm: 0, md: 20, lg: 20, xl: 30, xxl: 30 }, 16]}>
                 {
                     items.map((item, key) => (
                         <Item key={key} item={item} isLoading={isLoading}></Item>
