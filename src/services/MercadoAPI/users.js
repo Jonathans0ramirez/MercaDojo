@@ -4,4 +4,4 @@ const getUserById = (userId) => {
         .catch(err => err);
 }
 
-module.exports = { getUserById }
+export { getUserById }

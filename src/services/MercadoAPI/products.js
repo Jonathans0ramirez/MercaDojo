@@ -1,6 +1,6 @@
-const { getItemById, getDescription } = require('./items')
-const { searchProducts } = require('./search')
-const { getUserById } = require('./users')
+import { getItemById, getDescription } from './items';
+import { searchProducts } from './search'
+import { getUserById } from './users'
 
 const getAllProductsFormatted = (querySeacrh, offset = 0) => {
     return searchProducts(querySeacrh, offset).then(data => data)
@@ -37,4 +37,4 @@ const getAllProductsFormatted = (querySeacrh, offset = 0) => {
         })
 }
 
-module.exports = { getAllProductsFormatted }
+export { getAllProductsFormatted }

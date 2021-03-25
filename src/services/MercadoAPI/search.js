@@ -4,4 +4,4 @@ const searchProducts = (querySeacrh, offset) => {
         .catch(err => err);
 }
 
-module.exports = { searchProducts }
+export { searchProducts }

@@ -10,4 +10,4 @@ const getDescription = (itemId) => {
         .catch(err => err);
 }
 
-module.exports = { getItemById, getDescription }
+export { getItemById, getDescription }
