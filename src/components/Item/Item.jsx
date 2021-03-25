@@ -45,7 +45,7 @@ const Item = ({ item, isLoading }) => {
                 md={11}
                 lg={8}
                 xl={8}
-                xxl={4}
+                xxl={6}
             >
                 <BadgeOffHOC
                     discountOff={discountOff}

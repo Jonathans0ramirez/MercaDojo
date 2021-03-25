@@ -34,8 +34,15 @@ const LayoutHOC = ({ children }) => {
                             <ShopTwoTone twoToneColor="#1DA57A" /> MercaDojo by JR
                         </Title>
                     </Col>
-                    <Col span={8} offset={8}>
-                        <Search 
+                    <Col
+                        xs={{ span: 16, offset: 0 }}
+                        sm={{ span: 13, offset: 3 }}
+                        md={{ span: 10, offset: 6 }}
+                        lg={{ span: 8, offset: 8 }}
+                        xl={{ span: 7, offset: 9 }}
+                        xxl={{ span: 5, offset: 11 }}
+                    >
+                        <Search
                             placeholder="Buscar..."
                             handleAction={onSearch}
                         />

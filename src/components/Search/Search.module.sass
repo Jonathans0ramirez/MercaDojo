@@ -81,9 +81,8 @@
         width: 300px
         opacity: 1
         cursor: text
-
     &:focus ~ .search
-        right: -250px
+        right: -270px
         background: #151515
         z-index: 6
     &::before
@@ -102,4 +101,5 @@
     &::placeholder
         color: white
         opacity: 0.5
-        // font-weight: bolder
+    &::selection
+        background-color: #000000

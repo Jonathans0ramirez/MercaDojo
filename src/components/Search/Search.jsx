@@ -7,8 +7,8 @@ const Search = ({ placeholder, handleAction }) => {
 
     const handleKeyDown = (event) => {
         if (event.keyCode === 13) {
-            console.log(searchValue)
             handleAction(searchValue);
+            setSearchValue('');
         }
     }
 
@@ -24,7 +24,7 @@ const Search = ({ placeholder, handleAction }) => {
                 }}
                 type="text"
             />
-            <div class={SearchStyles.search}></div>
+            <div className={SearchStyles.search}></div>
         </div>
     )
 }
