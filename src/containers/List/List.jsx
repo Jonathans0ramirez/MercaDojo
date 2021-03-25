@@ -59,7 +59,7 @@ const List = () => {
 
     return (
         <>
-            <Carousel autoplay dotPosition="right" effect="fade">
+            <Carousel autoplay dotPosition="left" effect="fade">
                 <div>
                     <h3 style={contentStyle}>Ofertas</h3>
                 </div>

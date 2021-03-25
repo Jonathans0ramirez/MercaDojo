@@ -3,22 +3,20 @@ import { useHistory } from "react-router-dom";
 import {
     Row,
     Col,
-    Input,
     Typography
 } from 'antd';
 import {
-    ShopTwoTone,
-    SearchOutlined
+    ShopTwoTone
 } from '@ant-design/icons';
 import LayStyles from './LayoutHOC.module.sass';
+import Search from '../../components/Search/Search';
 
 const { Title } = Typography;
 
 const LayoutHOC = ({ children }) => {
     const history = useHistory();
 
-    const onSearch = (e) => {
-        const value = e.target.value;
+    const onSearch = (value) => {
         const valueFrm = value.replace(/\s+/g, '-').replace(/(-)+/g, '-');
         history.push(`/list/${valueFrm}`)
     };
@@ -36,16 +34,12 @@ const LayoutHOC = ({ children }) => {
                             <ShopTwoTone twoToneColor="#1DA57A" /> MercaDojo by JR
                         </Title>
                     </Col>
-                    <Col span={8} offset={7}>
-                        <Input
-                            className={LayStyles.inputBox}
-                            placeholder="Articulo"
-                            onPressEnter={onSearch}
-                            bordered={true}
-                            prefix={<SearchOutlined />}
+                    <Col span={8} offset={8}>
+                        <Search 
+                            placeholder="Buscar..."
+                            handleAction={onSearch}
                         />
                     </Col>
-                    <Col span={1}></Col>
                 </Row>
             </div>
             <div className={LayStyles.contentBox}>
