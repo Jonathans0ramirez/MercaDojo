@@ -3,10 +3,12 @@ import { useHistory } from "react-router-dom";
 import {
     Row,
     Col,
+    BackTop,
     Typography
 } from 'antd';
 import {
-    ShopTwoTone
+    ShopTwoTone,
+    UpCircleFilled
 } from '@ant-design/icons';
 import LayStyles from './LayoutHOC.module.sass';
 import Search from '../../components/Search/Search';
@@ -31,7 +33,7 @@ const LayoutHOC = ({ children }) => {
                             level={3}
                             code={true}
                         >
-                            <ShopTwoTone twoToneColor="#1DA57A" /> MercaDojo by JR
+                            <ShopTwoTone twoToneColor="#1DA57A" /> MercaJotyR
                         </Title>
                     </Col>
                     <Col
@@ -52,6 +54,9 @@ const LayoutHOC = ({ children }) => {
             <div className={LayStyles.contentBox}>
                 {children}
             </div>
+            <BackTop className={LayStyles.backTopBox}>
+                <div className={LayStyles.iconBackTopBox}><UpCircleFilled /></div>
+            </BackTop>
         </div>
     )
 }
