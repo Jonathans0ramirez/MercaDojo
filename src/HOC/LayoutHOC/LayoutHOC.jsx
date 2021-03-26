@@ -17,8 +17,8 @@ const LayoutHOC = ({ children }) => {
     const history = useHistory();
 
     const onSearch = (value) => {
-        const valueFrm = value.replace(/\s+/g, '-').replace(/(-)+/g, '-');
-        history.push(`/list/${valueFrm}`)
+        const valueFrm = value.replace(/\s+/g, '-').replace(/(-)+/g, '-').toLowerCase();
+        history.push(`/${valueFrm}`)
     };
 
     return (

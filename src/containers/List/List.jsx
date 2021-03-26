@@ -27,7 +27,7 @@ const List = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        const toSend = searchQuery.replace(/(-)+/g, ' ').toLowerCase();
+        const toSend = searchQuery.replace(/(-)+/g, ' ');
         makeAPICall(toSend).then(items => {
             setItems(items.items);
             setPagination({

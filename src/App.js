@@ -1,6 +1,5 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import LayoutHOC from './HOC/LayoutHOC/LayoutHOC';
-import Home from './containers/Home/Home';
 import List from './containers/List/List';
 import "antd/dist/antd.css";
 import './App.less';
@@ -9,10 +8,8 @@ const App = () => {
   return (
     <LayoutHOC>
       <Switch>
-        <Redirect exact from='/' to='/home' />
-        <Route path="/home" exact component={Home} />
-        <Redirect exact from='/list' to='/list/ofertas' />
-        <Route path="/list/:searchQuery" component={List} />
+        <Redirect exact from='/' to='/ofertas' />
+        <Route path="/:searchQuery" component={List} />
         <Route path="*" render={() => <p>NO TENGO NADA</p>} />
       </Switch>
     </LayoutHOC>
