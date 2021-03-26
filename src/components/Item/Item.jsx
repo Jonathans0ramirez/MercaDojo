@@ -90,7 +90,7 @@ const Item = ({ item, isLoading }) => {
                     </Card>
                 </BadgeOffHOC>
             </Col>
-            {item && <ItemDrawer itemRes={item} visible={visible} onClose={onClose} />}
+            {item && <ItemDrawer itemRes={item} discountOff={discountOff} visible={visible} onClose={onClose} />}
         </>
     )
 }

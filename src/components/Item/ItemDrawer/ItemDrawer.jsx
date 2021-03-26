@@ -12,7 +12,7 @@ const { PreviewGroup } = Image;
 const { Item } = Descriptions;
 const { Paragraph } = Typography;
 
-const ItemDrawer = ({ itemRes, visible, onClose }) => {
+const ItemDrawer = ({ itemRes, discountOff, visible, onClose }) => {
     if (itemRes === undefined) {
         return (<p>TROLL</p>);
     }
@@ -76,6 +76,7 @@ const ItemDrawer = ({ itemRes, visible, onClose }) => {
                             </div>
                             <div className="price priceDrawer">
                                 <span className="priceSpan">{price.toLocaleString('es')}</span>
+                                <span className="discountSpan">{`${discountOff.toFixed()}% OFF`}</span>
                             </div>
                         </>
                     )
